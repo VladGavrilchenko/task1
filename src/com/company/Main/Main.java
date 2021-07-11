@@ -1,16 +1,10 @@
-package com.company;
+package com.company.Main;
 
+import com.company.Annotations.Text;
 import java.lang.reflect.Method;
 
 
-@interface  Text
-{
-    int a();
-    int b();
-}
-
-class TestClass
-{
+class TestClass {
      @Text(a = 1 , b = 2)
     public void test(int a, int b) {
       System.out.println(a + " " + b);
@@ -25,15 +19,13 @@ public class Main {
             Class<?> cls = TestClass.class;
             Method method = cls.getMethod("test", int.class, int.class);
 
-            if(method.isAnnotationPresent(Text.class))
-            {
+            if(method.isAnnotationPresent(Text.class)) {
                Text text = method.getAnnotation(Text.class);
                method.invoke(null , text.a() , text.b());
             }
 
         }
-        catch (Exception ex)
-        {
+        catch (Exception ex) {
            System.out.println(ex.getMessage());
         }
     }
